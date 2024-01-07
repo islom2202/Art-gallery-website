@@ -1,0 +1,123 @@
+@use "../colors" as *;
+@use "../breakpoints" as *;
+// button styling for making it easy for responsive styling
+@mixin button($width, $height, $col1: 3fr, $col2: 1fr){
+   width: fit-content;
+        font-weight: 600;
+        & a{
+          height: $height;
+          width: $width;
+          letter-spacing: 0.3rem;
+          display: grid;
+          grid-template-columns: $col1 $col2;
+          span{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-inline: 1rem;
+          }
+          span:first-child{
+            background-color: $black;
+            color: $white;
+          }
+          span:last-child{
+            background-color: $orange;
+            color: $white;
+          }
+        }
+};
+@mixin flexing($direction, $gap){
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+}
+// mobile
+.section1{
+  @include flexing(column, 3rem);
+  img:nth-child(1){
+    width: 100%;
+    object-fit: cover;
+  }
+  img:nth-child(2){
+    display: none
+  }
+  article{
+    @include flexing(column, 3rem);
+    margin-inline: $mobile-inline;
+    aside{
+      @include flexing(column, 3rem);
+      button{
+       @include button(20rem, 5rem);
+      }
+      p{
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+// tablet
+@include responsive($tablet){
+  .section1{
+    height: 100vh;
+    flex-direction: row;
+    img:nth-child(1){
+      display: none;
+    }
+    img:nth-child(2){
+      display: block;
+      width: 60%;
+      height: 100%;
+      object-fit: cover;
+    }
+    article{
+      justify-content: center;
+      margin-inline: 0;
+      margin-left: -$mobile-inline*2;
+      aside{
+        max-width: 32rem;
+        button{
+          @include button(24rem, 6.5rem);
+        }
+      }
+    }
+  }
+}
+
+// desktop
+@include responsive($desktop){
+  .section1{
+    position: relative;
+    background: linear-gradient(90deg, $black 0 33%, transparent 33% 66%, $white 66% 100%);
+    font-weight: 200;
+    img:nth-child(2){
+      position: absolute;
+      width: 33%;
+      top: 0;
+      left: 33%;
+      z-index: -1;
+    }
+    article{
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-inline: $desktop-inline;
+      margin-right: 26rem;
+      padding-top: 17rem;
+      aside{
+        gap: 6rem;
+        button{
+          @include button(26rem, 7.6rem);
+        }
+        p{
+          font-weight: 100;
+        }
+      }
+      h2,p{
+        mix-blend-mode: difference;
+        color: $white;
+      }
+    } 
+  }
+}

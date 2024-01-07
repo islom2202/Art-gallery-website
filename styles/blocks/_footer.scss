@@ -1,0 +1,40 @@
+@use "../colors" as *;
+@use "../breakpoints" as *;
+// mobile
+.footer_main{
+  background-color: $black;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 3rem;
+  padding-block: 6rem;
+  padding-inline: $mobile-inline;
+  margin-top: $mobile-top;
+  img{
+    min-width: clamp(12rem, 12vw, 16rem);
+  }
+  .icons{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+// tablet
+@include responsive($tablet){
+  .footer_main{
+    flex-direction: row;
+    gap: 10rem;
+    p{
+      margin-top: -0.45rem; // 18px and 150% . Fifty percent from both top and bottom is 4.5px
+    }
+  }
+}
+
+// desktop
+@include responsive($desktop){
+  .footer_main{
+    padding-inline: $desktop-inline;
+    gap: 18rem;
+  }
+}

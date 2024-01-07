@@ -1,0 +1,75 @@
+@use "../colors" as *;
+@use "../breakpoints" as *;
+@use "./footer"; // for extending footer stylings
+@use "./section1" as *;
+// mobile
+.locationpage{
+  .map-section{
+    height: 80vh;
+    #map{
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 0;
+      .layerContainer{
+        filter: saturate(0);
+      }
+    }
+    button{
+      @include button(20rem, 5rem, 1fr, 3fr);
+      position: absolute;
+      top: 0rem;
+      left: 20vw;
+    }
+  }
+  .our-location-section{
+    padding-inline: $mobile-inline;
+    padding-block: 5rem;
+    background-color: $black;
+    color: $white;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    aside{
+      @extend .our-location-section;
+      padding: 0;
+      h4{
+        color: $orange;
+      }
+    }
+  }
+  .footer-map-page{
+    @extend .footer_main;
+    margin-top: 0;
+    background-color: $orange;
+  }
+}
+
+// tablet
+@include responsive($tablet){
+  .locationpage{
+    .map-section button{
+      @include button(24rem, 6.5rem, 1fr, 3fr);
+    }   
+    .our-location-section{
+      padding-block: 10rem;
+      grid-template-columns: 1fr 1fr;
+      aside{
+        padding: 0;
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+// desktop
+@include responsive($desktop){
+   .locationpage{
+    .map-section button{
+      @include button(26rem, 7.6rem, 1fr, 3fr);
+    }
+    .our-location-section{
+     padding-inline: $desktop-inline;
+    }
+  }
+}

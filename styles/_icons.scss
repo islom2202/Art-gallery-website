@@ -1,0 +1,45 @@
+$heights:(
+  arrow-left: 2.4rem,
+  arrow-right: 2.4rem,
+  facebook: 2rem,
+  instagram: 2rem,
+  twitter: 1.7rem,
+  location: 8.8rem
+);
+$widths:(
+  arrow-left: 1rem,
+  arrow-right: 1rem,
+  facebook: 2rem,
+  instagram: 2rem,
+  twitter: 2rem,
+  location: 6.6rem
+);
+
+@each $tag,$width in $widths{
+  .#{$tag}{
+    width: $width;
+  }
+};
+@each $tag,$height in $heights{
+  .#{$tag}{
+    height: $height;
+  }
+}
+
+
+// GPT's shorter version, but mine above is better 😎:
+// $icons: (
+//   arrow-left: (width: 1rem, height: 2.4rem),
+//   arrow-right: (width: 1rem, height: 2.4rem),
+//   facebook: (width: 2rem, height: 2rem),
+//   instagram: (width: 2rem, height: 2rem),
+//   twitter: (width: 2rem, height: 1.7rem),
+//   location: (width: 6.6rem, height: 8.8rem)
+// );
+
+// @each $tag, $props in $icons {
+//   .#{$tag} {
+//     width: map-get($props, width);
+//     height: map-get($props, height);
+//   }
+// }
